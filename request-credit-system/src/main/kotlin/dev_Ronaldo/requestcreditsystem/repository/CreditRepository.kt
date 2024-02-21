@@ -2,8 +2,14 @@ package dev_Ronaldo.requestcreditsystem.repository
 
 import dev_Ronaldo.requestcreditsystem.entity.Credit
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
+import java.util.UUID
 
 @Repository
 interface CreditRepository: JpaRepository<Credit, Long> {
+    fun findByCreditCode(creditCode: UUID): Credit?
+
+    @Query(value = "SELECT * FROM CREDITO WHERE CUSTUMER_ID = ?1", nativeQuery = true)
+    fun findAllByCustumerId(custumerId: Long): List<Credit>
 }
