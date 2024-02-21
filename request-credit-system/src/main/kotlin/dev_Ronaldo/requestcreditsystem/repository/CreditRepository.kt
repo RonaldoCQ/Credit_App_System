@@ -10,6 +10,6 @@ import java.util.UUID
 interface CreditRepository: JpaRepository<Credit, Long> {
     fun findByCreditCode(creditCode: UUID): Credit?
 
-    @Query(value = "SELECT * FROM CREDITO WHERE CUSTUMER_ID = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM CREDITS WHERE CUSTUMER_ID = ?1", nativeQuery = true)
     fun findAllByCustumerId(custumerId: Long): List<Credit>
 }

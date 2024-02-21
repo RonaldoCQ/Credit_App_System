@@ -6,7 +6,7 @@ import java.math.BigDecimal
 import java.time.LocalDate
 import java.util.UUID
 @Entity // Marca a Classe como tabela no DB
-@Table(name = "Credito") // Muda o nome da tabela
+@Table(name = "Credits") // Muda o nome da tabela
 
 
 data class Credit (
