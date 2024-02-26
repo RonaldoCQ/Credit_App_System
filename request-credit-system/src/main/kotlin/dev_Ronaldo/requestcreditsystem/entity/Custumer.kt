@@ -5,7 +5,7 @@ import java.math.BigDecimal
 
 
 @Entity // Marca a Classe como tabela no DB
-@Table(name = "Clientes") // Muda o nome da tabela
+@Table(name = "Custumer") // Muda o nome da tabela
 
 data class Custumer(
     @Column(nullable = false) var firstName: String = "",

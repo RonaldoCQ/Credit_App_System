@@ -6,7 +6,7 @@ CREATE TABLE credit (
    number_of_installment INT NOT NULL,
    status SMALLINT,
    custumer_id BIGINT,
-   CONSTRAINT pk_credito PRIMARY KEY (id)
+   CONSTRAINT pk_credit PRIMARY KEY (id)
 );
 
 ALTER TABLE credit ADD CONSTRAINT uc_credit_credit_code UNIQUE (credit_code);
