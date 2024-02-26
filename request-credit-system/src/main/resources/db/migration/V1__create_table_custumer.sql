@@ -7,7 +7,7 @@ CREATE TABLE custumer (
    password VARCHAR(255) NOT NULL,
    zip_code VARCHAR(255) NOT NULL,
    street VARCHAR(255) NOT NULL,
-   CONSTRAINT pk_clientes PRIMARY KEY (id)
+   CONSTRAINT pk_curstumer PRIMARY KEY (id)
 );
 
 ALTER TABLE custumer ADD CONSTRAINT uc_custumer_cpf UNIQUE (cpf);
