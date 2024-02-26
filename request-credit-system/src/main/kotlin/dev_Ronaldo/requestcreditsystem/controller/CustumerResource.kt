@@ -5,6 +5,7 @@ import dev_Ronaldo.requestcreditsystem.dto.CustumerUpdateDto
 import dev_Ronaldo.requestcreditsystem.dto.CustumerView
 import dev_Ronaldo.requestcreditsystem.entity.Custumer
 import dev_Ronaldo.requestcreditsystem.service.impl.CustumerService
+import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -24,7 +26,7 @@ class CustumerResource(
 ) {
 
     @PostMapping
-    fun saveCustumer(@RequestBody custumerDto: CustumerDto): ResponseEntity<String> {
+    fun saveCustumer(@RequestBody @Valid custumerDto: CustumerDto): ResponseEntity<String> {
         val savedCustumer = this.custumerService.save(custumerDto.toEntity())
         return ResponseEntity.status(HttpStatus.CREATED).body("Custumer ${savedCustumer.email} saved!")
     }
@@ -36,12 +38,13 @@ class CustumerResource(
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     fun deleteCustumer(@PathVariable id: Long) = this.custumerService.delete(id)
 
     @PatchMapping
     fun updateCustumer(
         @RequestParam(value = "custumerId") id: Long,
-        @RequestBody custumerUpdateDto: CustumerUpdateDto
+        @RequestBody @Valid custumerUpdateDto: CustumerUpdateDto
     ): ResponseEntity<CustumerView> {
         val custumer: Custumer = this.custumerService.findById(id)
         val custumerToUpdate: Custumer = custumerUpdateDto.toEntity(custumer)
