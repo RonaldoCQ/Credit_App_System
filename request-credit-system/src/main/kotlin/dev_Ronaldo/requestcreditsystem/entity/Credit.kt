@@ -6,7 +6,7 @@ import java.math.BigDecimal
 import java.time.LocalDate
 import java.util.UUID
 @Entity // Marca a Classe como tabela no DB
-@Table(name = "Credito") // Muda o nome da tabela
+@Table(name = "Credits") // Muda o nome da tabela
 
 
 data class Credit (
@@ -15,7 +15,7 @@ data class Credit (
     @Column(nullable = false) val dayFirstInstallment: LocalDate,
     @Column(nullable = false) val numberOfInstallment: Int = 0,
     @Enumerated val status: Status = Status.IN_PROGRESS,
-    @ManyToOne val custumer: Custumer? = null,
+    @ManyToOne var custumer: Custumer? = null,
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long? = null //@id indica essa iteração como PK
 )
 
